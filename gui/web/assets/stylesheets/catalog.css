@@ -1,0 +1,30 @@
+div.catalog {
+    padding: 30px 10px 10px 10px;
+    max-width: 500px;
+    margin: auto;
+}
+
+div.catalog .content {
+    padding: 5px 0;
+}
+
+div.catalog .content > div {
+    padding: 10px;
+}
+
+div.catalog .content > div > p:first-child {
+    font-weight: bold;
+    text-align: center;
+}
+
+div.catalog .content > div > p:not(:first-child) {
+    padding: 0 0 0 10px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+div.catalog input {
+    padding: 10px;
+
+    border: 2px solid #eee;
+    margin: 5px 0;
+}

@@ -1,0 +1,60 @@
+div.messaging {
+    padding: 30px 10px 10px 10px;
+    max-width: 500px;
+    margin: auto;
+}
+
+div.messaging .holder {
+    max-height: 300px;
+    overflow: auto;
+}
+
+div.messaging .chat-messages {
+    padding: 20px 0 0 0;
+}
+
+div.messaging .chat-messages > div {
+    display: flex;
+    flex-direction: column;
+    padding: 1px 0;
+}
+
+div.messaging .chat-messages > div > div {
+    max-width: 340px;
+}
+
+div.messaging .chat-messages > div.sent > div {
+    text-align: left;
+    align-self: flex-end;
+}
+
+div.messaging .chat-messages > div.received > div {
+    text-align: left;
+    align-self: flex-start;
+}
+
+div.messaging .chat-messages > div > div p.msg {
+    padding: 10px 15px;
+    font-weight: 100;
+}
+
+div.messaging .chat-messages > div > div p.details {
+    font-size: 10px;
+    color: #b1b1b1;
+}
+
+div.messaging .chat-messages > div.sent > div p.details {
+    text-align: right;
+}
+
+div.messaging .chat-messages > div.received > div p.msg {
+    background: #ededf7;
+    border-radius: 7px 7px 7px 0;
+}
+
+div.messaging .chat-messages > div.sent > div p.msg {
+    background: rgb(6,137,243);
+    background: linear-gradient(121deg, rgba(6,137,243,1) 0%, rgba(104,190,255,1) 100%); 
+    color: #fff;
+    border-radius: 7px 7px 0 7px;
+}

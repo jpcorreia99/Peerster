@@ -1,0 +1,34 @@
+div.packets-holder {
+    padding: 30px 10px 10px 10px;
+    position: relative;
+}
+
+div.packets-holder div.packets {
+    overflow: hidden;
+    font-size: 12px;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+div.packets-holder div.packets > div {
+    padding: 20px;
+    margin: 12px 5px;
+    background: #000;
+    color: #fff;
+    border-radius: 25px;
+    height: max-content;
+}
+
+div.packets-holder div.checkbox {
+    position: absolute;
+    right: 0;
+}
+
+div.packets-holder .packets-top-scroll-holder {
+    overflow: auto;
+}
+
+div.packets-holder .packets-top-scroll-holder > div {
+    height: 10px;
+}

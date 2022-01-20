@@ -1,0 +1,20 @@
+div.search {
+    padding: 30px 10px 10px 10px;
+    max-width: 500px;
+    margin: auto;
+}
+
+div.search input {
+    padding: 10px;
+
+    border: 2px solid #eee;
+    margin: 5px 0;
+}
+
+div.search div.search-all-result {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+div.search div.search-first-result {
+    font-family: 'Courier New', Courier, monospace;
+}

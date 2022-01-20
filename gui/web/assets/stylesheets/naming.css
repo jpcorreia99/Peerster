@@ -1,0 +1,16 @@
+div.naming {
+    padding: 30px 10px 10px 10px;
+    max-width: 500px;
+    margin: auto;
+}
+
+div.naming input {
+    padding: 10px;
+
+    border: 2px solid #eee;
+    margin: 5px 0;
+}
+
+div.naming div.result {
+    font-family: 'Courier New', Courier, monospace;
+}

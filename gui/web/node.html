@@ -1,0 +1,250 @@
+ <!DOCTYPE html>
+<html>
+<head>
+    <title>CS438 - Peerster</title>
+    <link rel="stylesheet" href="assets/stylesheets/main.css">
+    <meta charset="UTF-8">
+</head>
+<body>
+
+    <div data-controller="flash" id="flash" class="flash">
+        <div data-flash-target="wrapper" id="flash-wrapper">
+        </div>
+    </div>
+
+    <h1>Peerster <sup>EPFL - DEDIS - CS438</sup></h1>
+    <table data-controller="peerInfo" id="peerInfo" class="peer-info">
+        <tr><td>Proxy address</td><td data-peerInfo-target="peerAddr"></td></tr>
+        <tr><td>Socket address</td><td data-peerInfo-target="socketAddr"></td></tr>
+    </table>
+
+    <div data-controller="messaging" id="messaging" class="messaging">
+        <h2 class="collapsible">Messages received on the chat</h2>
+
+        <div data-messaging-target="holder" class="holder">
+            <div data-messaging-target="messages" class="chat-messages">
+            </div>
+        </div>
+    </div>
+
+    <div class="unicast" data-controller="unicast">
+        <h2 class="collapsible">Unicast</h2>
+
+        <div>
+            <h3>ChatMessage</h3>
+
+            <div class="unicast-chat-form">
+                <textarea data-unicast-target="message" name="message" placeholder="write your message here..."></textarea>
+
+                <div class="message">
+                    <input data-unicast-target="destination" name="destination" type="text" placeholder="127.0.0.1:0 (destination)"/>
+                    <button data-action="click->unicast#send">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 0l-6 22-8.129-7.239 7.802-8.234-10.458 7.227-7.215-1.754 24-12zm-15 16.668v7.332l3.258-4.431-3.258-2.901z"/></svg>
+                        Send
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div data-controller="broadcast" class="broadcast">
+        <h2 class="collapsible">Broadcast</h2>
+
+        <div>
+            <div>
+                <h3>ChatMessage</h3>
+
+                <div class="broadcast-chat-form">
+                    <textarea data-broadcast-target="chatMessage" name="message" placeholder="write your message here..."></textarea>
+
+                    <button data-action="click->broadcast#sendChat">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 0l-6 22-8.129-7.239 7.802-8.234-10.458 7.227-7.215-1.754 24-12zm-15 16.668v7.332l3.258-4.431-3.258-2.901z"/></svg>
+                        Send
+                    </button>
+                </div>
+            </div>
+
+            <div>
+                <h3>Private message</h3>
+
+                <div class="broadcast-chat-form">
+                    <textarea data-broadcast-target="privateMessage" name="message" placeholder="write your message here..."></textarea>
+
+                    <div class="message">
+                        <input data-broadcast-target="privateRecipients" name="recipients" type="text" placeholder="127.0.0.1:0,127.0.0.1:1,..."/>
+                        <button data-action="click->broadcast#sendPrivate">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 0l-6 22-8.129-7.239 7.802-8.234-10.458 7.227-7.215-1.754 24-12zm-15 16.668v7.332l3.258-4.431-3.258-2.901z"/></svg>
+                            Send
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div data-controller="routing" class="routing">
+        <h2 class="collapsible">Routing table</h2>
+
+        <div>
+            <table>
+                <thead>
+                    <th>To</th>
+                    <th>Relay</th>
+                </thead>
+                <tbody data-routing-target="table">
+                </tbody>
+            </table>
+
+            <p class="collapsible sub">See graph</p>
+            <div data-routing-target="graphviz" class="graphviz"></div>
+
+            <button data-action="click->routing#update">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13.5 2c-5.621 0-10.211 4.443-10.475 10h-3.025l5 6.625 5-6.625h-2.975c.257-3.351 3.06-6 6.475-6 3.584 0 6.5 2.916 6.5 6.5s-2.916 6.5-6.5 6.5c-1.863 0-3.542-.793-4.728-2.053l-2.427 3.216c1.877 1.754 4.389 2.837 7.155 2.837 5.79 0 10.5-4.71 10.5-10.5s-4.71-10.5-10.5-10.5z"/></svg>
+                Update routing
+            </button>
+
+            <h3>Add peer</h3>
+            <div class="add-peer">
+                <input data-routing-target="peer" name="peer" type="text" placeholder="127.0.0.1:0"/>
+                <button data-action="click->routing#addPeer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg>
+                    Add peer
+                </button>
+            </div>
+
+            <h3>Set trouting entry</h3>
+            <div class="set-entry">
+                <input data-routing-target="origin" name="origin" type="text" placeholder="127.0.0.1:0 (origin)"/>
+                <input data-routing-target="relay" name="relay" type="text" placeholder="127.0.0.1:0 (relay)"/>
+                <button data-action="click->routing#setEntry">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M23 12c0 1.042-.154 2.045-.425 3h-2.101c.335-.94.526-1.947.526-3 0-4.962-4.037-9-9-9-1.706 0-3.296.484-4.654 1.314l1.857 2.686h-6.994l2.152-7 1.85 2.673c1.683-1.049 3.658-1.673 5.789-1.673 6.074 0 11 4.925 11 11zm-6.354 7.692c-1.357.826-2.944 1.308-4.646 1.308-4.963 0-9-4.038-9-9 0-1.053.191-2.06.525-3h-2.1c-.271.955-.425 1.958-.425 3 0 6.075 4.925 11 11 11 2.127 0 4.099-.621 5.78-1.667l1.853 2.667 2.152-6.989h-6.994l1.855 2.681zm.354-10.283l-1.421-1.409-5.105 5.183-2.078-2.183-1.396 1.435 3.5 3.565 6.5-6.591z"/></svg>
+                    Set entry
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div data-controller="catalog" class="catalog">
+        <h2 class="collapsible">Catalog</h2>
+
+        <div>
+            <div data-catalog-target="content" class="content">
+            </div>
+            <button data-action="click->catalog#update">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13.5 2c-5.621 0-10.211 4.443-10.475 10h-3.025l5 6.625 5-6.625h-2.975c.257-3.351 3.06-6 6.475-6 3.584 0 6.5 2.916 6.5 6.5s-2.916 6.5-6.5 6.5c-1.863 0-3.542-.793-4.728-2.053l-2.427 3.216c1.877 1.754 4.389 2.837 7.155 2.837 5.79 0 10.5-4.71 10.5-10.5s-4.71-10.5-10.5-10.5z"/></svg>
+                Update catalog
+            </button>
+
+            <h3>Add catalog entry</h3>
+            <div class="add-catalog-entry">
+                <input data-catalog-target="key" name="key" type="text" placeholder="aef123..."/>
+                <input data-catalog-target="value" name="value" type="text" placeholder="127.0.0.1:0"/>
+                <button data-action="click->catalog#add">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg>
+                    Add catalog entry
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div data-controller="dataSharing" class="data">
+        <h2 class="collapsible">Data</h2>
+
+        <div>
+            <h3>Upload</h3>
+            <div data-dataSharing-target="uploadResult" class="upload-result"></div>
+            <input data-dataSharing-target="fileUpload" type="file">
+            <button data-action="click->dataSharing#upload">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg>
+                Upload data
+            </button>
+
+            <h3>Download</h3>
+            <input data-dataSharing-target="downloadMetahash" type="text" placeholder="metahash">
+            <button data-action="click->dataSharing#download">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg>
+                Download data
+            </button>
+        </div>
+    </div>
+
+    <div data-controller="search" class="search">
+        <h2 class="collapsible">Search</h2>
+
+        <div>
+            <h3>Search all</h3>
+            <div data-search-target="searchAllResult" class="search-all-result"></div>
+            <input data-search-target="searchAllPattern" name="pattern" type="type" placeholder="pattern (.*)">
+            <input data-search-target="searchAllBudget" name="budget" type="number" placeholder="budget (3)">
+            <input data-search-target="searchAllTimeout" name="timeout" type="type" placeholder="timeout (1s)">
+
+            <button data-action="click->search#searchAll">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg>
+                Search all
+            </button>
+
+            <h3>Search first</h3>
+            <div data-search-target="searchFirstResult" class="search-first-result"></div>
+            <input data-search-target="searchFirstPattern" name="pattern" type="type" placeholder="pattern (.*)">
+            <input data-search-target="searchFirstInitialBudget" name="budget" type="number" placeholder="initial budget (1)">
+            <input data-search-target="searchFirstFactor" name="factor" type="number" placeholder="factor (2)">
+            <input data-search-target="searchFirstRetry" name="retry" type="number" placeholder="retry (5)">
+            <input data-search-target="searchFirstTimeout" name="timeout" type="type" placeholder="timeout (1s)">
+
+            <button data-action="click->search#searchFirst">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg>
+                Search first
+            </button>
+        </div>
+    </div>
+
+    <div data-controller="naming" class="naming">
+        <h2 class="collapsible">Naming</h2>
+
+        <div>
+            <h3>Resolve a filename</h3>
+            <div data-naming-target="resolveResult" class="result"></div>
+            <input data-naming-target="resolveFilename" name="filename" type="text" placeholder="filename"/>
+            <button data-action="click->naming#resolve">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13.5 2c-5.621 0-10.211 4.443-10.475 10h-3.025l5 6.625 5-6.625h-2.975c.257-3.351 3.06-6 6.475-6 3.584 0 6.5 2.916 6.5 6.5s-2.916 6.5-6.5 6.5c-1.863 0-3.542-.793-4.728-2.053l-2.427 3.216c1.877 1.754 4.389 2.837 7.155 2.837 5.79 0 10.5-4.71 10.5-10.5s-4.71-10.5-10.5-10.5z"/></svg>
+                Resolve
+            </button>
+
+            <h3>Tag a file</h3>
+            <input data-naming-target="tagFilename" name="filename" type="text" placeholder="filename"/>
+            <input data-naming-target="tagMetahash" name="metahash" type="text" placeholder="metahash (aef123...)"/>
+            <button data-action="click->naming#tag">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg>
+                Tag file
+            </button>
+        </div>
+    </div>
+
+    <div data-controller="packets" class="packets-holder">
+        <h2 class="active collapsible">Packets history</h2>
+
+        <div class="checkbox">
+            <input data-packets-target="follow" type="checkbox" id="follow-checkbox" checked>
+            <label for="follow-checkbox">follow</label>
+        </div>
+
+        <div>
+            <div data-packets-target="holder" class="packets-top-scroll-holder">
+                <div data-packets-target="scroll">
+                </div>
+            </div>
+
+            <div data-packets-target="packets" class="packets">
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/scripts/stimulus.js"></script>
+    <script src="assets/scripts/viz.js"></script>
+    <script src="assets/scripts/viz.lite.render.js"></script>
+    <script src="assets/scripts/main.js"></script>
+    <script type="text/javascript">
+        main() // launch javascript when ready
+    </script>
+</body>
+</html>

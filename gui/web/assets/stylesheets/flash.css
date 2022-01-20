@@ -1,0 +1,67 @@
+div.flash {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    z-index: 10;
+}
+
+div.flash #flash-wrapper {
+    max-width: 800px;
+    margin: auto;
+}
+
+div.flash #flash-wrapper .flash-msg {
+    padding: 10px;
+    color: white;
+    opacity: 0.83;
+    transition: opacity 0.6s;
+    margin: 0 0 5px 0;
+    position: relative;
+}
+
+div.flash #flash-wrapper .flash-msg.error {
+    background-color: #f44336;
+}
+
+div.flash #flash-wrapper .flash-msg.success {
+    background-color: #04AA6D;
+}
+
+div.flash #flash-wrapper .flash-msg.info {
+    background-color: #2196F3;
+}
+
+div.flash #flash-wrapper .flash-msg.warning {
+    background-color: #ff9800;
+}
+
+div.flash #flash-wrapper .flash-msg .closebtn {
+    padding-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 20px;
+    line-height: 18px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+div.flash #flash-wrapper .flash-msg .progress {
+    position: absolute;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.2);
+    height: 5px;
+    left: 0;
+    right: 100%;
+
+    animation-name: progress;
+    animation-duration: 4s;
+    animation-timing-function: linear;
+}
+
+@keyframes progress {
+    from {right: 100%}
+    to {right: 0%}
+}

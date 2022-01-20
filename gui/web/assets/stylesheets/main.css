@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
+@import "flash.css";
+@import "routing.css";
+@import "messaging.css";
+@import "unicast.css";
+@import "broadcast.css";
+@import "packets.css";
+@import "catalog.css";
+@import "data.css";
+@import "search.css";
+@import "naming.css";
+
+body {
+    background-color: #fff;
+    background-image: radial-gradient(#d0d0d0 0.45px, #fff 0.45px);
+    background-size: 9px 9px;
+
+    font-family: 'Open Sans', sans-serif;
+
+    position: relative;
+
+    padding: 20px;
+}
+
+table.peer-info {
+    font-size: 12px;
+}
+
+table.peer-info td:first-child {
+    padding: 0 7px 0 0;
+}
+
+button {
+    border-radius: 5px;
+    border: none;
+    padding: 7px 12px;
+    background: #ededf7;
+    cursor: pointer;
+}
+
+button:hover {
+    background: rgb(6,137,243);
+    color: #fff;
+}
+
+button svg {
+    vertical-align: sub;
+    height: 14px;
+    width: auto;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+h1 sup {
+    font-size: 12px;
+}
+
+h2 {
+    color: #00ceb1;
+    text-transform: uppercase;
+    font-size: 16px;
+    border-bottom: 3px solid;
+    position: relative;
+    padding: 0 0 0 10px;
+}
+
+h2:before {
+    content: "↓";
+    position: absolute;
+    right: 8px;
+    top: -2px;
+    color: #00ceb1;
+}
+
+h2.active {
+    color: #fff;
+    background-color: #00ceb1;
+    padding: 4px;
+}
+
+h2.active:before {
+    content: "↑";
+    color: #fff;
+    top: 2px;
+}
+
+h2.collapsible:hover:before {
+    color: #fff;
+}
+
+h3 {
+    color: #00ceb1;
+    text-transform: uppercase;
+    font-size: 14px;
+    border-bottom: 2px solid;
+    margin: 20px 0 10px 0;
+}
+
+.collapsible {
+    cursor: pointer;
+}
+
+.collapsible:hover {
+    color: #fff;
+    background-color: #00ceb1;
+}
